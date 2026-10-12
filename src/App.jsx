@@ -7,26 +7,55 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [students] = useState([
-    { id: 101, name: "Jane Doe", major: "Computer Science", year: 2, gpa: 3.8, variant: "outline-primary" },
-    { id: 102, name: "Mary Doe", major: "Computer Science", year: 2, gpa: 3.8, variant: "outline-danger" },
-    { id: 103, name: "Gant Doe", major: "Computer Science", year: 2, gpa: 3.8, variant: "outline-danger" },
-    { id: 104, name: "Amm Doe", major: "Computer Science", year: 2, gpa: 3.8, variant: "outline-danger" },
+    { id: 443, name: "Jonathan", major: "Computer Science", year: 1, gpa: 2.4 },
+    { id: 234, name: "Adeena", major: "Computer Science", year: 4, gpa: 3.9 },
+    { id: 231, name: "Fatima", major: "Computer Science", year: 4, gpa: 4.0 },
+    { id: 122, name: "Khalid", major: "Computer Science", year: 1, gpa: 3.0 },
   ]);
 
   const [showAlert, setShowAlert] = useState(true);
 
   return (
-    <div className="d-flex flex-column min-vh-100 bg-light">
+    <div className="d-flex flex-column min-vh-100" style={{ backgroundColor: '#fff0f3' }}>
+      
+      {/* Custom Styles for Pink Theme Accent */}
+      <style>{`
+        .custom-pink-btn {
+          background-color: #d81b60;
+          border-color: #d81b60;
+          color: white;
+        }
+        .custom-pink-btn:hover {
+          background-color: #ad1457;
+          border-color: #ad1457;
+          color: white;
+        }
+        .custom-outline-pink {
+          color: #d81b60;
+          border-color: #d81b60;
+        }
+        .custom-outline-pink:hover {
+          background-color: #d81b60;
+          color: white;
+        }
+        .page-item.active .page-link {
+          background-color: #d81b60 !important;
+          border-color: #d81b60 !important;
+        }
+        .page-link {
+          color: #d81b60;
+        }
+      `}</style>
       
       {/* 1. Navbar */}
       <Navbar bg="white" expand="lg" className="border-bottom px-4 shadow-sm">
         <Container fluid>
-          <Navbar.Brand href="#home" className="fw-bold">StudentPortal</Navbar.Brand>
+          <Navbar.Brand href="#home" className="fw-bold" style={{ color: '#d81b60' }}>StudentPortal</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="#dashboard">Dashboard</Nav.Link>
-              <Nav.Link href="#students" active>Students</Nav.Link>
+              <Nav.Link href="#students" active style={{ color: '#d81b60 !important' }}>Students</Nav.Link>
               <Nav.Link href="#courses">Courses</Nav.Link>
               <Nav.Link href="#reports">Reports</Nav.Link>
             </Nav>
@@ -42,7 +71,7 @@ function App() {
                   className="me-2 rounded-1"
                   aria-label="Search"
                 />
-                <Button variant="primary">Search</Button>
+                <Button className="custom-pink-btn">Search</Button>
               </Form>
             </Nav>
           </Navbar.Collapse>
@@ -52,48 +81,42 @@ function App() {
       {/* Main Content Area */}
       <Container className="flex-grow-1 py-4">
         
-        {/* 2. Breadcrumb text matching image */}
-        <div className="bg-dark text-white p-2 mb-4 rounded small">
-          <code>.breadcrumb / breadcrumb-item / Home / Students / Directory</code>
-        </div>
+        {/* Breadcrumb (Cleaned up raw code text) */}
         <Breadcrumb className="mb-4">
           <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
           <Breadcrumb.Item href="#">Students</Breadcrumb.Item>
           <Breadcrumb.Item active>Directory</Breadcrumb.Item>
         </Breadcrumb>
 
-        {/* 3. Page Header and Button (Fixed text color visibility) */}
+        {/* Page Header and Button */}
         <div className="d-flex justify-content-between align-items-center mb-4">
-          <h2 className="fw-normal text-dark">Page Header</h2>
-          <Button variant="primary" className="fw-semibold px-3">Add New Student</Button>
+          <h2 className="fw-bold text-dark">Student Directory</h2>
+          <Button className="custom-pink-btn fw-semibold px-3">Add New Student</Button>
         </div>
 
-        {/* 4. Student Cards Grid */}
+        {/* Student Cards Grid */}
         <Row className="g-4 mb-4">
           {students.map((student) => (
             <Col key={student.id} xs={12} sm={6} md={3}>
-              <Card className="h-100 shadow-sm border text-center pb-3">
-                {/* Gray Avatar Placeholder */}
-                <div className="bg-secondary bg-opacity-25 py-4 mb-3 d-flex justify-content-center align-items-center" style={{ height: "120px" }}>
-                  <div className="rounded-circle bg-secondary bg-opacity-50 d-flex justify-content-center align-items-center" style={{ width: "60px", height: "60px" }}>
+              <Card className="h-100 shadow-sm border text-center pb-3 bg-white">
+                {/* Avatar Placeholder with Soft Pink Hue */}
+                <div className="py-4 mb-3 d-flex justify-content-center align-items-center" style={{ height: "120px", backgroundColor: '#f8bbd0' }}>
+                  <div className="rounded-circle d-flex justify-content-center align-items-center" style={{ width: "60px", height: "60px", backgroundColor: '#d81b60' }}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-person-fill text-white" viewBox="0 0 16 16">
                       <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                     </svg>
                   </div>
                 </div>
                 <Card.Body className="text-start px-3 py-0">
-                  <Card.Title className="fw-bold fs-5 mb-2">{student.name}</Card.Title>
+                  <Card.Title className="fw-bold fs-5 mb-2 text-dark">{student.name}</Card.Title>
                   <Card.Text className="mb-1 text-muted small">ID: {student.id}</Card.Text>
                   <Card.Text className="mb-1 text-muted small">Major: {student.major}</Card.Text>
                   <Card.Text className="mb-1 text-muted small">Year: {student.year}</Card.Text>
                   <Card.Text className="mb-3 text-muted small">GPA: {student.gpa}</Card.Text>
                   
                   <div className="d-flex justify-content-between mt-3">
-                    <Button variant="outline-primary" size="sm">View Profile</Button>
+                    <Button variant="outline-secondary" size="sm" className="custom-outline-pink">View Profile</Button>
                     <Button variant="outline-danger" size="sm">Delete</Button>
-                  </div>
-                  <div className="text-center mt-2">
-                    <span className="text-danger small font-monospace">.{student.variant}</span>
                   </div>
                 </Card.Body>
               </Card>
@@ -101,7 +124,7 @@ function App() {
           ))}
         </Row>
 
-        {/* 5. Pagination */}
+        {/* Pagination */}
         <div className="d-flex justify-content-center mb-4">
           <Pagination className="mb-0">
             <Pagination.Prev>Previous</Pagination.Prev>
@@ -112,16 +135,16 @@ function App() {
           </Pagination>
         </div>
 
-        {/* 6. Success Alert */}
+        {/* Success Alert */}
         {showAlert && (
-          <Alert variant="info" onClose={() => setShowAlert(false)} dismissible className="bg-info bg-opacity-25 border-info text-dark mb-4">
+          <Alert variant="info" onClose={() => setShowAlert(false)} dismissible className="border-0 text-dark mb-4" style={{ backgroundColor: '#fce4ec' }}>
             Student records have been successfully updated.
           </Alert>
         )}
 
       </Container>
 
-      {/* 7. Dark Footer */}
+      {/* Dark Footer */}
       <footer className="bg-dark text-white-50 py-5 mt-auto border-top border-secondary">
         <Container>
           <Row>
@@ -142,7 +165,7 @@ function App() {
             </Col>
           </Row>
           <div className="text-center text-white-50 mt-4 small border-top border-secondary pt-3">
-            © 2024 StudentPortal. All rights reserved.
+            © 2026 StudentPortal. All rights reserved.
           </div>
         </Container>
       </footer>
